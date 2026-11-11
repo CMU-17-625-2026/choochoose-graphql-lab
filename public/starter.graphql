@@ -1,0 +1,12 @@
+query CompareJourneys {
+  journeys(from: "PIT", to: "PHL", date: "2026-11-12") {
+    id
+    fares { name price }
+    legs {
+      from { name }
+      to { name }
+      seats { class available observedAt }
+      service { id disruptions { summary updatedAt } }
+    }
+  }
+}

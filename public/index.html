@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChooChoose · GraphQL Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header><span class="wordmark">ChooChoose<span class="dot">●</span></span><span class="course">17-625 / API Design</span></header>
+  <main>
+    <div class="intro"><p class="eyebrow">QUERY LAB · SYNTHETIC DATA</p>
+      <h1>Choose the data.<br>Observe the work.</h1>
+      <p>Run the traveler query, then change its selections to explore the journey graph.</p>
+    </div>
+    <section class="model" aria-label="Exercise work model">
+      <div><strong>40</strong><span>journeys per search</span></div>
+      <div><strong>3</strong><span>legs per journey</span></div>
+      <div><strong>80</strong><span>journeys per service</span></div>
+      <p>Each selected <code>Leg.seats</code> resolver models one seat-service call, with no batching or reuse. The exercise budget is <strong>200 calls per request</strong>; this candidate API does not enforce it.</p>
+    </section>
+    <div class="endpoint"><label for="endpoint">POST endpoint</label><input id="endpoint" readonly><button id="copy-endpoint" type="button">Copy URL</button><span id="copy-status" role="status"></span></div>
+    <div class="workspace">
+      <section class="panel" aria-labelledby="query-title">
+        <div class="panel-heading"><h2 id="query-title">Query</h2><div class="actions"><button id="reset" type="button">Reset starter</button><button id="run" class="primary" type="button" disabled>Run query <span aria-hidden="true">→</span></button></div></div>
+        <label class="sr-only" for="query">GraphQL query</label>
+        <textarea id="query" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="query-help"></textarea>
+        <p id="query-help" class="hint">Demo search: PIT → PHL, 2026-11-12. Other searches return an empty list.</p>
+        <details class="options"><summary>Variables and operation name</summary>
+          <label for="variables">Variables (JSON object)</label><textarea id="variables" spellcheck="false">{}</textarea>
+          <label for="operation">Operation name (optional)</label><input id="operation" autocomplete="off" placeholder="Use when the document contains multiple operations">
+        </details>
+        <div class="run-bar"><span class="hint">Run with Ctrl / ⌘ + Enter, or use the button above.</span></div>
+      </section>
+      <section class="panel" aria-labelledby="result-title">
+        <div class="panel-heading"><h2 id="result-title">Result</h2><button id="download" type="button" disabled>Download JSON</button></div>
+        <div id="work" class="work" aria-live="polite"><span class="work-label">MODELED SEAT-SERVICE CALLS</span><strong id="count">—</strong><p id="budget">Run a query to see its work.</p></div>
+        <p id="status" role="status">Ready when you are.</p>
+        <p id="preview-note" class="hint" hidden>Showing the first 50,000 characters. Download JSON for the complete response.</p>
+        <pre id="result" tabindex="0" aria-label="GraphQL response">Your JSON response will appear here.</pre>
+      </section>
+    </div>
+    <details class="schema"><summary>Explore the candidate schema</summary>
+      <p>A journey is an itinerary, a leg is one segment, and a service is a train service used in several journeys. Lists return items directly. This schema has no <code>nodes</code> wrapper or <code>first</code> argument.</p>
+      <p><a href="/schema.graphql" target="_blank" rel="noopener">Open schema as text</a> · Standard GraphQL introspection is also available.</p>
+      <pre id="schema" tabindex="0">Loading schema…</pre>
+    </details>
+    <footer>All records and timestamps are synthetic. Counts model the worksheet's assumptions; they are not remote requests or latency measurements. For hosting safety, execution stops at 50,000 modeled seat calls or 400,000 resolved fields. A stopped query reports incomplete work.</footer>
+  </main>
+</body>
+</html>

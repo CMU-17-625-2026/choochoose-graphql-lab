@@ -1,0 +1,50 @@
+scalar Date
+scalar DateTime
+
+type Query {
+  journeys(
+    from: ID!
+    to: ID!
+    date: Date!
+  ): [Journey!]!
+}
+
+type Journey {
+  id: ID!
+  legs: [Leg!]!
+  fares: [FareOption!]!
+}
+
+type Leg {
+  from: Station!
+  to: Station!
+  service: Service!
+  seats: [SeatAvailability!]!
+}
+
+type Service {
+  id: ID!
+  journeys(date: Date!): [Journey!]!
+  disruptions: [Disruption!]!
+}
+
+type Station {
+  id: ID!
+  name: String!
+}
+
+type FareOption {
+  name: String!
+  price: Float!
+}
+
+type SeatAvailability {
+  class: String!
+  available: Int!
+  observedAt: DateTime!
+}
+
+type Disruption {
+  summary: String!
+  updatedAt: DateTime!
+}
