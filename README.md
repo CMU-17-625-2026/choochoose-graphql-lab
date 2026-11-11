@@ -19,6 +19,9 @@ from the Ports panel.
 
 ## Deploy on Render for free
 
+Deployment source: https://github.com/schmerl/choochoose-graphql-lab (private).
+Connect that repository in Render; its app is at the repository root.
+
 Publish **this directory's contents** as a standalone GitHub repository, or
 connect the course repository and set the Root Directory to
 `demos/choochoose-graphql`. You do not need to publish the rest of the course.
